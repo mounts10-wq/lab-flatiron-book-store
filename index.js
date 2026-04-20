@@ -45,3 +45,32 @@ const bookStore = {
 
 // Write your code here!
 
+// Step 2: Manipulating Existing Elements
+const bookStoreTitle = document.querySelector("#header");
+bookStoreTitle.textContent = bookStore.name;
+
+// Get the <ul> where books will be listed
+const bookList = document.querySelector("#book-list");
+
+// Remove the example template <li>
+const deleteThis = document.querySelector("#delete-this");
+if (deleteThis) deleteThis.remove();
+
+// Step 3: Book Elements
+bookStore.books.forEach((book) => {
+  // Create elements
+  const bookContainer = document.createElement("li");
+  const bookTitle = document.createElement("h3");
+  const bookAuthor = document.createElement("p");
+  const bookImage = document.createElement("img");
+
+  // Set content/attributes
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = book.author;
+  bookImage.src = book.imageUrl;
+  bookImage.alt = `Cover of ${book.title}`;
+
+  // Append into the container (li), then into the list (ul)
+  bookContainer.append(bookTitle, bookAuthor, bookImage);
+  bookList.appendChild(bookContainer);
+});
